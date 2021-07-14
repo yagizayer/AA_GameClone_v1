@@ -3,17 +3,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
+using Helpers;
 
 public class PinManagement : MonoBehaviour
 {
-    [SerializeField] private Transform PinsParent;
-    [SerializeField] private GameObject PinPrefab;
-    [SerializeField] private EventController _eventController;
+    [Header("Pin Creation")]
     [SerializeField] [Range(.01f, 100f)] private int PinCount = 10;
     [SerializeField] private Vector3 PinsOffset = Vector3.down * 2;
+    [Space(10)]
+    [SerializeField] private EventController _eventController;
+    [SerializeField] private Transform MidAirPinsParent;
+    [SerializeField] private Transform PinsParent;
+    [SerializeField] private GameObject PinPrefab;
     private List<Transform> _allPins;
+    private _Helper _helper;
     private void Start()
     {
+        if (_helper == null) _helper = FindObjectOfType<_Helper>();
         if (_eventController == null) _eventController = FindObjectOfType<EventController>();
         _allPins = CreatePins(PinPrefab, PinCount);
         GlobalVariables.AllPins = _allPins;
@@ -31,6 +37,16 @@ public class PinManagement : MonoBehaviour
             result.Add(tempPin.transform);
         }
         return result;
+    }
+
+    public void SlideAllPinsUp()
+    {
+        StartCoroutine(_helper.lerpPositions(PinsParent, PinsParent.localPosition, PinsParent.localPosition + PinsOffset * -150, 5));
+    }
+
+    public void DeparentThrownPin(Transform pin)
+    {
+        pin.SetParent(MidAirPinsParent);
     }
 
     public void ConnectPinToTarget(Transform pin)
