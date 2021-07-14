@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class EventController : MonoBehaviour
 {
-    [SerializeField] private UnityEvent PlayerClicked = new UnityEvent();
+    [SerializeField] private UnityEvent<Transform> PlayerClicked = new UnityEvent<Transform>();
     [SerializeField] private UnityEvent<Transform> PinTouchedTarget = new UnityEvent<Transform>();
     [SerializeField] private UnityEvent PinTouchedPin = new UnityEvent();
     [SerializeField] private UnityEvent GameEnded = new UnityEvent();
@@ -14,7 +14,7 @@ public class EventController : MonoBehaviour
 
     public void InvokePlayerClickEvent()
     {
-        PlayerClicked.Invoke();
+        PlayerClicked.Invoke(GlobalVariables.GetNextPin());
     }
     public void InvokePinTouchedTargetEvent(Transform pin)
     {
