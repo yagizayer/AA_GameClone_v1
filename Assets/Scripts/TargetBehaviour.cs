@@ -7,9 +7,8 @@ public class TargetBehaviour : MonoBehaviour
 {
     [SerializeField] private GameObject _targetChildren;
 
-    [SerializeField] public UnityEvent CollisionDetected = new UnityEvent();
-    public void ReparentPin()
+    public void ReparentPin(Transform pin)
     {
-        GlobalVariables.CurrentPin.SetParent(_targetChildren.transform);
+        pin.SetParent(_targetChildren.transform);
     }
 }
