@@ -16,20 +16,29 @@ namespace Helpers
                 yield return null;
             }
         }
-        public IEnumerator lerpPositions2D(RectTransform objectToLerp, Vector3 startingPos, Vector3 targetPos, float speed, bool controlVal)
+        public IEnumerator lerpPositions2D(RectTransform objectToLerp, Vector3 startingPos, Vector3 targetPos, float speed=1)
         {
 
             float lerpVal = 0;
             while (lerpVal < 1)
             {
-                controlVal = true;
                 objectToLerp.localPosition = Vector3.Lerp(startingPos, targetPos, lerpVal);
 
                 yield return null;
                 lerpVal += Time.deltaTime * speed;
             }
-            if (lerpVal >= 1)
-                controlVal = false;
+        }
+        public IEnumerator lerpPositions(Transform objectToLerp, Vector3 startingPos, Vector3 targetPos, float speed = 1)
+        {
+
+            float lerpVal = 0;
+            while (lerpVal < 1)
+            {
+                objectToLerp.localPosition = Vector3.Lerp(startingPos, targetPos, lerpVal);
+
+                yield return null;
+                lerpVal += Time.deltaTime * speed;
+            }
         }
 
     }
