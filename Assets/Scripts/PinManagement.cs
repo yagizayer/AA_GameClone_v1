@@ -12,11 +12,15 @@ public class PinManagement : MonoBehaviour
     [SerializeField] private Vector3 PinsOffset = Vector3.down * 2;
     [Space(10)]
     [SerializeField] private EventController _eventController;
+
+    [SerializeField] private Transform[] RestingPositions;
     [SerializeField] private Transform MidAirPinsParent;
     [SerializeField] private Transform PinsParent;
     [SerializeField] private GameObject PinPrefab;
     private List<Transform> _allPins;
     private _Helper _helper;
+
+
     private void Start()
     {
         if (_helper == null) _helper = FindObjectOfType<_Helper>();
@@ -41,7 +45,38 @@ public class PinManagement : MonoBehaviour
 
     public void SlideAllPinsUp()
     {
-        StartCoroutine(_helper.lerpPositions(PinsParent, PinsParent.localPosition, PinsParent.localPosition + PinsOffset * -150, 5));
+        Debug.Log("slide first 5 Not Thrown Pin to next rest position here");
+        List<Transform> first5Pins = new List<Transform>();
+        foreach (Transform item in GlobalVariables.AllPins)
+        {
+            if (!GlobalVariables.ThrownPins.Contains(item))
+            {
+                // not thrown all pins
+                int currentIndex = GlobalVariables.AllPins.IndexOf(item);
+                first5Pins.Add(item);
+            }
+            if (first5Pins.Count == 5) break;
+        }
+        for (int i = 0; i < first5Pins.Count; i++)
+        {
+            Transform pin = first5Pins[i];
+            Transform restPos = RestingPositions[i];
+            // pin.position = restPos.position;
+            StartCoroutine(SlidePinToRestPos(pin, restPos, 2));// burda kaldın
+        }
+    }
+
+    private IEnumerator SlidePinToRestPos(Transform pin, Transform restPos, float slidingSpeed)
+    {
+        Vector3 pinPos = pin.position;
+        Vector3 restPosTemp = restPos.position;
+        float lerpVal = 0;
+        while (lerpVal <= 1)
+        {
+            pin.position = Vector3.Lerp(pinPos, restPosTemp, lerpVal);
+            lerpVal += Time.deltaTime * slidingSpeed;
+            yield return null;
+        }
     }
 
     public void DeparentThrownPin(Transform pin)

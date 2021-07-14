@@ -181,7 +181,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3921128708110666526}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 50
@@ -215,3 +215,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _eventController: {fileID: 0}
+  Target: {fileID: 4254447869442473181, guid: af36c6e69f38c574d8423794251b1bd1, type: 3}
+  TargetChildrenParent: {fileID: 0}
+  Range: 100
