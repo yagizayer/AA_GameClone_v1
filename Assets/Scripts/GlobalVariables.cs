@@ -6,6 +6,7 @@ public static class GlobalVariables
 {
     public static List<Transform> AllPins;
     public static int CurrentPinNo = -1;
+    public static List<Transform> ThrownPins = new List<Transform>();
 
 
     static public Transform GetNextPin()
