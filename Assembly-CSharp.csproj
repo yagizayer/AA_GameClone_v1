@@ -39,20 +39,20 @@
      <Compile Include="Assets\3rd-Party\Rotary Heart\SerializableDictionaryLite\Example\DataBaseExample.cs" />
      <Compile Include="Assets\3rd-Party\Rotary Heart\SerializableDictionaryLite\DrawKeyAsPropertyAttribute.cs" />
      <Compile Include="Assets\3rd-Party\Rotary Heart\SerializableDictionaryLite\Example\NestedDB.cs" />
+     <Compile Include="Assets\Scripts\PinManagement.cs" />
      <Compile Include="Assets\Scripts\Helpers\_Extesions.cs" />
      <Compile Include="Assets\Scripts\TargetBehaviour.cs" />
+     <Compile Include="Assets\Scripts\EventController.cs" />
      <Compile Include="Assets\3rd-Party\Rotary Heart\SerializableDictionaryLite\IDAttribute.cs" />
      <Compile Include="Assets\3rd-Party\Rotary Heart\SerializableDictionaryLite\ReorderableList\ReorderableList.cs" />
      <Compile Include="Assets\Scripts\PlayerBehaviour.cs" />
      <Compile Include="Assets\Scripts\GlobalVariables.cs" />
      <Compile Include="Assets\Scripts\Helpers\_Helper.cs" />
+     <Compile Include="Assets\Scripts\PinCollisionDetection.cs" />
+     <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\3rd-Party\Rotary Heart\SerializableDictionaryLite\SerializableDictionaryBase.cs" />
      <Compile Include="Assets\3rd-Party\Rotary Heart\SerializableDictionaryLite\References\RequiredReferences.cs" />
      <Compile Include="Assets\Scripts\TargetRotation.cs" />
-     <Compile Include="Assets\Scripts\EventController.cs" />
-     <Compile Include="Assets\Scripts\PinManagement.cs" />
-     <Compile Include="Assets\Scripts\PinCollisionDetection.cs" />
-     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.12f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

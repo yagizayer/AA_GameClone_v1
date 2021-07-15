@@ -103,6 +103,16 @@ namespace Helpers
             }
             return null;
         }
+        public static Transform GetChildWithTag(this Transform me, string tag)
+        {
+            foreach (Transform item in me)
+                if (item.CompareTag(tag)) return item;
+            return null;
+        }
 
+        public static Color ModifyA(this Color me, float newValue)
+        {
+            return new Color(me.r, me.g, me.b, newValue);
+        }
     }
 }
