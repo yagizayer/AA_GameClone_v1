@@ -12,7 +12,6 @@ public class PlayerBehaviour : MonoBehaviour
     {
         StartCoroutine(PinThrowing(TargetCircle, pin, PinSpeed));
     }
-
     IEnumerator PinThrowing(Transform target, Transform pin, float speed)
     {
         float lerpVal = 0;
@@ -26,7 +25,6 @@ public class PlayerBehaviour : MonoBehaviour
             lerpVal += Time.deltaTime * speed;
         }
     }
-
     public void BreakMovement(Transform pin)
     {
         GlobalVariables.ThrownPins.Add(pin);
