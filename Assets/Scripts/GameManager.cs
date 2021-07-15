@@ -12,4 +12,8 @@ public class GameManager : MonoBehaviour
             Debug.Log("GameEnded");
         }
     }
+    public void GameFailed()
+    {
+        Debug.Log("Game Failed");
+    }
 }
