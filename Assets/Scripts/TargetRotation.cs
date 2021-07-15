@@ -18,4 +18,9 @@ public class TargetRotation : MonoBehaviour
             yield return null;
         }
     }
+
+    public void ChangeRotationSpeed(float speed)
+    {
+        RotateSpeed = speed;
+    }
 }
