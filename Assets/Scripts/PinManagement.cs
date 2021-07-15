@@ -17,18 +17,19 @@ public class PinManagement : MonoBehaviour
     [SerializeField] private Transform MidAirPinsParent;
     [SerializeField] private Transform PinsParent;
     [SerializeField] private GameObject PinPrefab;
+    private Transform _target;
     private List<Transform> _allPins;
     private _Helper _helper;
 
 
     private void Start()
     {
+        if (_target == null) _target = GameObject.FindGameObjectWithTag("Target").transform;
         if (_helper == null) _helper = FindObjectOfType<_Helper>();
         if (_eventController == null) _eventController = FindObjectOfType<EventController>();
         _allPins = CreatePins(PinPrefab, PinCount);
         GlobalVariables.AllPins = _allPins;
     }
-
     private List<Transform> CreatePins(GameObject pinPrefab, int pinCount)
     {
         List<Transform> result = new List<Transform>();
@@ -42,14 +43,12 @@ public class PinManagement : MonoBehaviour
         }
         return result;
     }
-
     public void SlideAllPinsUp()
     {
-        Debug.Log("slide first 5 Not Thrown Pin to next rest position here");
         List<Transform> first5Pins = new List<Transform>();
         foreach (Transform item in GlobalVariables.AllPins)
         {
-            if (!GlobalVariables.ThrownPins.Contains(item))
+            if (item.parent == PinsParent)
             {
                 // not thrown all pins
                 int currentIndex = GlobalVariables.AllPins.IndexOf(item);
@@ -62,10 +61,9 @@ public class PinManagement : MonoBehaviour
             Transform pin = first5Pins[i];
             Transform restPos = RestingPositions[i];
             // pin.position = restPos.position;
-            StartCoroutine(SlidePinToRestPos(pin, restPos, 2));// burda kaldın
+            StartCoroutine(SlidePinToRestPos(pin, restPos, 5));// burda kaldın
         }
     }
-
     private IEnumerator SlidePinToRestPos(Transform pin, Transform restPos, float slidingSpeed)
     {
         Vector3 pinPos = pin.position;
@@ -78,14 +76,23 @@ public class PinManagement : MonoBehaviour
             yield return null;
         }
     }
-
     public void DeparentThrownPin(Transform pin)
     {
         pin.SetParent(MidAirPinsParent);
     }
-
     public void ConnectPinToTarget(Transform pin)
     {
-        Debug.Log("connect pin to target with line here");
+        Transform line = pin.GetChildWithTag("Line");
+        if (line)
+        {
+            Image tempImage = line.GetComponent<Image>();
+            tempImage.color = tempImage.color.ModifyA(255);
+        }
     }
+    public void CenterPin(Transform pin)
+    {
+        pin.position = Vector3.down * .3f;
+    }
+
+
 }
