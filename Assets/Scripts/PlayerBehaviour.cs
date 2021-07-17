@@ -24,6 +24,7 @@ public class PlayerBehaviour : MonoBehaviour
             yield return null;
             lerpVal += Time.deltaTime * speed;
         }
+
     }
     public void BreakMovement(Transform pin)
     {

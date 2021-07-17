@@ -93,6 +93,9 @@ public class PinManagement : MonoBehaviour
     {
         pin.position = Vector3.down * .3f;
     }
-
+    public void PaintPinsRed(Transform me, Transform other)
+    {
+        me.GetComponent<Image>().color = Color.red;
+    }
 
 }

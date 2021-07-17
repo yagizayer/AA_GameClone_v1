@@ -19,7 +19,7 @@ public class PinCollisionDetection : MonoBehaviour
         }
         if (other.CompareTag("Pin"))
         {
-            _eventController.InvokePinTouchedPinEvent();
+            _eventController.InvokePinTouchedPinEvent(transform, other.transform);
         }
     }
 }
