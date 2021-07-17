@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine;
 
@@ -15,5 +16,14 @@ public class GameManager : MonoBehaviour
     public void GameFailed()
     {
         Debug.Log("Game Failed");
+    }
+
+    public void DirectScene(string targetScene)
+    {
+        SceneManager.LoadScene(targetScene);
+    }
+    public void QuitApp()
+    {
+        Application.Quit();
     }
 }
