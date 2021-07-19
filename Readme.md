@@ -10,7 +10,7 @@ This project is a basic clone of famous game [aa](https://play.google.com/store/
 The goal of the game is throwing all pins to target without touching any other pin.
  - GameScreens
 
-![Image1](https://raw.githubusercontent.com/yagizayer/AA_GameClone_v1/main/ReadmeResources/Img1.bmp)&#9;![Image1](https://raw.githubusercontent.com/yagizayer/AA_GameClone_v1/main/ReadmeResources/Img3.bmp)&#9;![Image1](https://raw.githubusercontent.com/yagizayer/AA_GameClone_v1/main/ReadmeResources/Img2.bmp)
+![Image1](https://raw.githubusercontent.com/yagizayer/AA_GameClone_v1/main/ReadmeResources/Img1.bmp)&#9;![Image2](https://raw.githubusercontent.com/yagizayer/AA_GameClone_v1/main/ReadmeResources/Img3.bmp)&#9;![Image3](https://raw.githubusercontent.com/yagizayer/AA_GameClone_v1/main/ReadmeResources/Img2.bmp)
 
 ## Technology Details
 Technologies used in this project are:
