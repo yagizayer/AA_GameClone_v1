@@ -18,7 +18,6 @@ public class PinManagement : MonoBehaviour
     [SerializeField] private Transform PinsParent;
     [SerializeField] private GameObject PinPrefab;
     private Transform _target;
-    private List<Transform> _allPins;
     private _Helper _helper;
 
 
@@ -27,21 +26,19 @@ public class PinManagement : MonoBehaviour
         if (_target == null) _target = GameObject.FindGameObjectWithTag("Target").transform;
         if (_helper == null) _helper = FindObjectOfType<_Helper>();
         if (_eventController == null) _eventController = FindObjectOfType<EventController>();
-        _allPins = CreatePins(PinPrefab, PinCount);
-        GlobalVariables.AllPins = _allPins;
     }
-    private List<Transform> CreatePins(GameObject pinPrefab, int pinCount)
+    public void CreatePins()
     {
         List<Transform> result = new List<Transform>();
-        for (int pinNo = 0; pinNo < pinCount; pinNo++)
+        for (int pinNo = 0; pinNo < PinCount; pinNo++)
         {
-            GameObject tempPin = Instantiate(pinPrefab, PinsParent);
+            GameObject tempPin = Instantiate(PinPrefab, PinsParent);
             tempPin.name = "PinNo" + pinNo.ToString();
             tempPin.GetComponentInChildren<Text>().text = (pinNo + 1).ToString();
             tempPin.transform.position = Vector3.zero + Vector3.down * pinNo + PinsOffset;
             result.Add(tempPin.transform);
         }
-        return result;
+        GlobalVariables.AllPins = result;
     }
     public void SlideAllPinsUp()
     {

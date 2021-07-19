@@ -5,16 +5,23 @@ using UnityEngine.Events;
 
 public class EventController : MonoBehaviour
 {
+    [SerializeField] private UnityEvent OnLoad = new UnityEvent();
     [SerializeField] private UnityEvent<Transform> PlayerClickedEvent = new UnityEvent<Transform>();
     [SerializeField] private UnityEvent<Transform> PinTouchedTargetEvent = new UnityEvent<Transform>();
     [SerializeField] private UnityEvent<Transform, Transform> PinTouchedPinEvent = new UnityEvent<Transform, Transform>();
     [SerializeField] private UnityEvent<Transform> GameEndedEvent = new UnityEvent<Transform>();
-    private static bool _gameEnded = false;
 
+    public void InvokeOnLoadEvent()
+    {
+        // called in GameField onClick Event
+        OnLoad.Invoke();
+    }
     public void InvokePlayerClickEvent()
     {
         // called in GameField onClick Event
-        PlayerClickedEvent.Invoke(GlobalVariables.GetNextPin());
+        Transform currentPin = GlobalVariables.GetNextPin();
+        if (currentPin)
+            PlayerClickedEvent.Invoke(currentPin);
     }
     public void InvokePinTouchedTargetEvent(Transform pin)
     {
@@ -26,8 +33,9 @@ public class EventController : MonoBehaviour
     }
     public void InvokeGameEndedEvent(Transform me)
     {
-        if (!_gameEnded){
-            _gameEnded = true;
+        if (!GlobalVariables.GameEnded)
+        {
+            GlobalVariables.GameEnded = true;
             GameEndedEvent.Invoke(me);
         }
     }

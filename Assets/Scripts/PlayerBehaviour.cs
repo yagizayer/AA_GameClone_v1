@@ -17,14 +17,13 @@ public class PlayerBehaviour : MonoBehaviour
         float lerpVal = 0;
         Vector3 targetPos = target.position;
         Vector3 pinPos = pin.position;
-        while (lerpVal < 1 && GlobalVariables.ThrownPins.IndexOf(pin) < 0)
+        while (lerpVal < 1 && GlobalVariables.ThrownPins.IndexOf(pin) < 0 && !GlobalVariables.GameEnded)
         {
             Vector3 lerpPos = Vector3.Lerp(pinPos, targetPos, lerpVal);
             pin.position = lerpPos;
             yield return null;
             lerpVal += Time.deltaTime * speed;
         }
-
     }
     public void BreakMovement(Transform pin)
     {

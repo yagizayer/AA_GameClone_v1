@@ -6,6 +6,8 @@ public static class GlobalVariables
 {
     public static List<Transform> AllPins;
     public static int CurrentPinNo = -1;
+    public static bool GameEnded = false;
+    public static bool LevelFailed= false;
     public static List<Transform> ThrownPins = new List<Transform>();
 
 

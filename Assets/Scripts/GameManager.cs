@@ -7,35 +7,42 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private EventController _eventController;
-    [SerializeField] private Image EndScreen ;
+    [SerializeField] private GameObject FailScreen;
+    [SerializeField] private GameObject LevelClearScreen;
     private void Start()
     {
         if (_eventController == null) _eventController = FindObjectOfType<EventController>();
+        else _eventController.InvokeOnLoadEvent();
     }
+
+    public void ResetGlobals()
+    {
+        GlobalVariables.AllPins = new List<Transform>();
+        GlobalVariables.CurrentPinNo = -1;
+        GlobalVariables.ThrownPins = new List<Transform>();
+        GlobalVariables.GameEnded = false;
+        GlobalVariables.LevelFailed = false;
+    }
+
     public void CheckGameEnd(Transform pin)
     {
         if (pin.GetComponentInChildren<Text>().text == (GlobalVariables.AllPins.Count).ToString())
         {
-            Debug.Log("Level Cleared");
+            GlobalVariables.LevelFailed = false;
+            _eventController.InvokeGameEndedEvent(pin);
         }
     }
     public void GameFailed(Transform me, Transform other)
     {
+        GlobalVariables.LevelFailed = true;
         _eventController.InvokeGameEndedEvent(me);
     }
     public void ShowEndScreen()
     {
-        StartCoroutine(ShowingEndScreen());
-    }
-
-    private IEnumerator ShowingEndScreen()
-    {
-        yield return new WaitForSeconds(.25f);
-        float opacity = 0;
-        while (true)
-        {
-
-        }
+        if (GlobalVariables.LevelFailed)
+            FailScreen.SetActive(true);
+        else
+            LevelClearScreen.SetActive(true);
     }
 
     public void DirectScene(string targetScene)

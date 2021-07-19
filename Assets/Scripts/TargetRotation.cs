@@ -12,15 +12,11 @@ public class TargetRotation : MonoBehaviour
     }
     IEnumerator RotateTarget()
     {
-        while (true)
+        while (!GlobalVariables.GameEnded)
         {
             _targetGraphic.Rotate(Vector3.forward * RotateSpeed);
             yield return null;
         }
     }
 
-    public void ChangeRotationSpeed(float speed)
-    {
-        RotateSpeed = speed;
-    }
 }
